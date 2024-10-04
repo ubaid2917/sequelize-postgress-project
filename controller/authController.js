@@ -4,12 +4,14 @@ const bcrypt = require("bcrypt");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 
+// gen token
 const generateToken = (payload) => {
   return jwt.sign(payload, process.env.JWT_SECRET_KEY, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
+// signup
 const signup = catchAsync(async (req, res, next) => {
   const body = req.body;
 
@@ -45,6 +47,7 @@ const signup = catchAsync(async (req, res, next) => {
   });
 });
 
+// login
 const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
